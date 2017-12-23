@@ -19,9 +19,13 @@ class loader
         if (is_file($controllerFile)){
             include $controllerFile;
             $controllerObj = new $controllerClass();
-            $controllerObj->$action($param);
+            if(method_exists($controllerObj,$action)){
+                $controllerObj->$action($param);
+            }else{
+                throw new \Exception("action {$action} not found");
+            }
         }else{
-            throw new \Exception('page not find');
+            throw new \Exception("controller {$controller} not found");
         }
     }
     public static function load($class){

@@ -10,7 +10,7 @@ class router
 {
     public function __construct()
     {
-        if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/' && strpos($_SERVER['REQUEST_URI'],'/?')!=0 ){
+        if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/' && strpos($_SERVER['REQUEST_URI'],'/?')!==0 ){
             $path = $_SERVER['REQUEST_URI'];
             $pathArr = explode('/',trim($path));
             if (isset($pathArr[1])){

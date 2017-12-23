@@ -40,4 +40,7 @@ class indexController extends BaseController
             log::error($e->getMessage());
         }
     }
+    public function echart(){
+        $this->display('test/echart.html');
+    }
 }
