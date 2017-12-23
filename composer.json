@@ -1,0 +1,21 @@
+{
+  "name":"SF PHP",
+  "description":"Simple Framework PHP",
+  "type":"Framework",
+  "keywords":[
+    "PHP","SF","SF-PHP","SFphp"
+  ],
+  "require":{
+    "php":">= 5.3.0",
+    "filp/whoops":"*",
+    "symfony/var-dumper":"*",
+    "catfan/medoo":"*",
+    "twig/twig":"*"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}

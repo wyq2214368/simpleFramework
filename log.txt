@@ -1,0 +1,10 @@
+2017-12-23 17:24:45 {"code":8,"message":"Use of undefined constant asd - assumed 'asd'","file":"D:\\sina\\code\\simpleFramework\\application\\controllers\\indexController.php","line":21,"resCode":500}
+2017-12-23 17:25:41 {"code":8,"message":"Use of undefined constant asd - assumed 'asd'","file":"D:\\sina\\code\\simpleFramework\\application\\controllers\\indexController.php","line":21,"resCode":500}
+2017-12-23 17:58:28 "teststsdadf"
+2017-12-23 17:58:40 "teststsdadf"
+2017-12-23 17:58:41 "teststsdadf"
+2017-12-23 17:58:41 "teststsdadf"
+2017-12-23 17:59:25 "teststsdadf"
+2017-12-23 18:02:02 "teststsdadf"
+2017-12-23 18:03:56 "teststsdadf"
+2017-12-23 18:29:21 {"code":8,"message":"Use of undefined constant daf - assumed 'daf'","file":"D:\\sina\\code\\simpleFramework\\application\\controllers\\indexController.php","line":19,"resCode":500}
