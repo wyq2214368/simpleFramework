@@ -18,6 +18,6 @@ class log
             mkdir($path,'0777',true);
         }
         $message = date('Y-m-d H:i:s').' '.json_encode($message).PHP_EOL;
-        file_put_contents($path.$file.'.txt',$message,FILE_APPEND);
+        file_put_contents($path.$file.'.log',$message,FILE_APPEND);
     }
 }

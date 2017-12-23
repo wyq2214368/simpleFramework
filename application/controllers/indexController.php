@@ -16,6 +16,7 @@ class indexController extends BaseController
 {
     public function index(){
         try{
+            daf;
             // 页面渲染 示例
             $param = Request::get('data','Hello World!');
             $this->assign('data',$param);
