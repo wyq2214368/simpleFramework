@@ -10,6 +10,9 @@ return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'QL\\Ext\\Lib\\' => array($vendorDir . '/jaeger/curlmulti', $vendorDir . '/jaeger/http'),
+    'QL\\Ext\\' => array($vendorDir . '/jaeger/querylist-ext-aquery', $vendorDir . '/jaeger/querylist-ext-multi', $vendorDir . '/jaeger/querylist-ext-request', $vendorDir . '/jaeger/querylist-ext-login'),
+    'QL\\' => array($vendorDir . '/jaeger/querylist'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Medoo\\' => array($vendorDir . '/catfan/medoo/src'),
 );
