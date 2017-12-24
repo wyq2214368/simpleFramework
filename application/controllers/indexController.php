@@ -7,6 +7,7 @@
  * Time: 23:06
  */
 namespace controllers;
+use application\models\buling\newsModel;
 use core\base\BaseController;
 use application\models\test\testModel;
 use core\common\http\Request;
@@ -44,6 +45,94 @@ class indexController extends BaseController
         }
     }
     public function echart(){
-        $this->display('test/echart.html');
+        $list = array(
+            "xiaoxin"=>"小信",
+            "mangguo"=>"芒果",
+            "xingkong"=>"星空",
+            "biaobaiqiang"=> "表白墙",
+        );
+
+        $json = <<<json
+{
+	"tooltip": {
+		"trigger": "axis"
+	},
+	"legend": {
+		"data": ["小信","芒果","星空","表白墙"]
+	},
+	"toolbox": {
+		"show": true,
+		"feature": {
+			"dataView": {
+				"show": true,
+				"readOnly": false
+			},
+			"magicType": {
+				"show": true,
+				"type": [
+					"line",
+					"bar",
+					"stack",
+					"tiled"
+				]
+			},
+			"restore": {
+				"show": true
+			},
+			"saveAsImage": {
+				"show": true
+			}
+		}
+	},
+	"calculable": true,
+	"xAxis": [
+		{
+			"type": "category",
+			"data": []
+		}
+	],
+	"yAxis": [
+		{
+			"type": "value",
+			"name":"消息条数"
+		}
+	],
+	"series": []
+}
+json;
+        echo "<pre>";
+        $option = json_decode($json,true);
+        $option2 = $option;
+        $model = new newsModel();
+        foreach ($list as $key => $value){
+            $ret = $model->newsCountByTime($key);
+            $xData = array();
+            $yData = array();
+            $tmpData = 0;
+            $series['name'] = $value;
+            $series['type'] = "line";
+            $series['itemStyle']['normal']['label']['show'] = true;
+            foreach ($ret as $item){
+                $tmpData += $item['num'];
+                $xData[] = $item['time'];
+                $yData['line'][] = $tmpData;
+                $yData['bar'][] = $item['num'];
+            }
+            $series['data'] = $yData['line'];
+            $option['series'][] = $series;
+            // No.2 增量图
+            $series['type'] = "bar";
+            $series['data'] = $yData['bar'];
+            $option2['series'][] = $series;
+        }
+        $option['title']['text'] = "消息平台收录统计";
+        $option['xAxis'][0]['data'] = $xData;
+
+        $option2['title']['text'] = "消息月增长量面板";
+        $option2['xAxis'][0]['data'] = $xData;
+
+        $this->assign('option',json_encode($option));
+        $this->assign('option2',json_encode($option2));
+        $this->display('buling/count.html');
     }
 }

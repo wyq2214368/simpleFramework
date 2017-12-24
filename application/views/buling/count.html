@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echart2</title>
+</head>
+<body>
+<div id="main" style="width:80%;height:400px;"></div>
+<div id="main2" style="width:80%;height:400px;"></div>
+<script src="/plugs/echart/echarts-all.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {% autoescape false %}{{option}}{% endautoescape %};
+    myChart.setOption(option);
+</script>
+<script>
+    var myChart = echarts.init(document.getElementById('main2'));
+    var option = {% autoescape false %}{{option2}}{% endautoescape %};
+    myChart.setOption(option);
+</script>
+</body>
+</html>
