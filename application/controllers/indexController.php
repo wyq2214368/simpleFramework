@@ -103,6 +103,7 @@ json;
         echo "<pre>";
         $option = json_decode($json,true);
         $option2 = $option;
+        $option3 = $option;
         $model = new newsModel();
         foreach ($list as $key => $value){
             $ret = $model->newsCountByTime($key);
@@ -131,8 +132,45 @@ json;
         $option2['title']['text'] = "消息月增长量面板";
         $option2['xAxis'][0]['data'] = $xData;
 
+        $ret = $model->qunCountByTime();
+        $xData = array();
+        $yData = array();
+        $tmpData = 0;
+        $series['name'] = '群消息数量';
+        $series['type'] = "line";
+        $series['itemStyle']['normal']['label']['show'] = false;
+        foreach ($ret as $item){
+            $tmpData += $item['num'];
+            $xData[] = $item['time'];
+            $yData['line'][] = $tmpData;
+            $yData['bar'][] = $item['num'];
+        }
+        $series['data'] = $yData['line'];
+        $option3['series'][] = $series;
+        // No.2 增量图
+        $series['name'] = "群消息日增量";
+        $series['type'] = "bar";
+        $series['data'] = $yData['bar'];
+        $series['yAxisIndex'] = 1;
+        $option3['series'][] = $series;
+        $option3['title']['text'] = "QQ群消息统计面板";
+        $option3['xAxis'][0]['data'] = $xData;
+        $option3['yAxis'] = array(
+            array(
+                'type' => 'value',
+                'name' => '消息总数'
+            ),
+            array(
+                'type' => 'value',
+                'name' => '消息增量'
+            ),
+        );
+//        var_dump($option3['yAxis']);die;
+        $option3['legend']['data'] = ['群消息数量','群消息日增量'];
+//        var_dump($option3);die;
         $this->assign('option',json_encode($option));
         $this->assign('option2',json_encode($option2));
+        $this->assign('option3',json_encode($option3));
         $this->display('buling/count.html');
     }
 }

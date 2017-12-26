@@ -7,6 +7,7 @@
 <body>
 <div id="main" style="width:80%;height:400px;margin: 50px;"></div>
 <div id="main2" style="width:80%;height:400px;margin: 50px;"></div>
+<div id="main3" style="width:80%;height:400px;margin: 50px;"></div>
 <script src="/plugs/echart/echarts-all.js"></script>
 <script>
     var myChart = echarts.init(document.getElementById('main'));
@@ -16,6 +17,11 @@
 <script>
     var myChart = echarts.init(document.getElementById('main2'));
     var option = {% autoescape false %}{{option2}}{% endautoescape %};
+    myChart.setOption(option);
+</script>
+<script>
+    var myChart = echarts.init(document.getElementById('main3'));
+    var option = {% autoescape false %}{{option3}}{% endautoescape %};
     myChart.setOption(option);
 </script>
 </body>

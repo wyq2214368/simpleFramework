@@ -16,6 +16,7 @@ class newsModel extends BaseModel
         return $result;
     }
     public function qunCountByTime(){
-
+        $result = $this->db->query("SELECT count(id) as num,concat(MONTH(time),'月',DAY(time)) as time FROM qq_push_news WHERE `level` >= 1  GROUP BY YEAR(`time`) ASC,MONTH (`time`) ASC,DAY(`time`) ASC")->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
     }
 }
