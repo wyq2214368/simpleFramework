@@ -5,13 +5,15 @@
     <title>buling年度报告</title>
 </head>
 <body>
-<div id="main" style="width:80%;height:400px;margin: 50px;"></div>
-<div id="main2" style="width:80%;height:400px;margin: 50px;"></div>
-<div id="main3" style="width:80%;height:400px;margin: 50px;"></div>
+<center>
+    {%for i in range(1, 4)%}
+    <div id="main{{i}}" style="width:60%;height:400px;margin: 50px;border:1px solid #eee;box-shadow: 5px 5px 5px #ddd;"></div>
+    {%endfor%}
+</center>
 <script src="/plugs/echart/echarts-all.js"></script>
 <script>
-    var myChart = echarts.init(document.getElementById('main'));
-    var option = {% autoescape false %}{{option}}{% endautoescape %};
+    var myChart = echarts.init(document.getElementById('main1'));
+    var option = {% autoescape false %}{{option1}}{% endautoescape %};
     myChart.setOption(option);
 </script>
 <script>
@@ -22,6 +24,11 @@
 <script>
     var myChart = echarts.init(document.getElementById('main3'));
     var option = {% autoescape false %}{{option3}}{% endautoescape %};
+    myChart.setOption(option);
+</script>
+<script>
+    var myChart = echarts.init(document.getElementById('main4'));
+    var option = {% autoescape false %}{{option4}}{% endautoescape %};
     myChart.setOption(option);
 </script>
 </body>

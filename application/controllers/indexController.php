@@ -104,6 +104,8 @@ json;
         $option = json_decode($json,true);
         $option2 = $option;
         $option3 = $option;
+        $option4 = $option;
+        $pieData = array();
         $model = new newsModel();
         foreach ($list as $key => $value){
             $ret = $model->newsCountByTime($key);
@@ -119,6 +121,7 @@ json;
                 $yData['line'][] = $tmpData;
                 $yData['bar'][] = $item['num'];
             }
+            $pieData[] = ['value'=>$tmpData,'name'=>$value];
             $series['data'] = $yData['line'];
             $option['series'][] = $series;
             // No.2 增量图
@@ -145,6 +148,7 @@ json;
             $yData['line'][] = $tmpData;
             $yData['bar'][] = $item['num'];
         }
+        $pieData[] = ['value'=>$tmpData, 'name'=> 'QQ群'];
         $series['data'] = $yData['line'];
         $option3['series'][] = $series;
         // No.2 增量图
@@ -165,12 +169,34 @@ json;
                 'name' => '消息增量'
             ),
         );
-//        var_dump($option3['yAxis']);die;
         $option3['legend']['data'] = ['群消息数量','群消息日增量'];
 //        var_dump($option3);die;
-        $this->assign('option',json_encode($option));
+
+        unset($option4['xAxis']);
+        unset($option4['yAxis']);
+        $option4['tooltip'] = array(
+            'trigger' => 'item',
+            'formatter' => "{a} <br/>{b} : {c} ({d}%)"
+        );
+        $option4['legend'] = array(
+            'orient' => 'vertical',
+            'x' => 'left',
+            'data' => ['小信','芒果','星空','表白墙','QQ群']
+        );
+        $option4['series'][] = array(
+            'name' => '消息来源',
+            'type' => 'pie',
+            'radius' => '55%',
+            'center' => ['50%', '60%'],
+            'data' => $pieData
+        );
+        $option4['title']['text'] = "消息比例";
+        $option4['title']['x'] = "center";
+
+        $this->assign('option1',json_encode($option));
         $this->assign('option2',json_encode($option2));
         $this->assign('option3',json_encode($option3));
+        $this->assign('option4',json_encode($option4));
         $this->display('buling/count.html');
     }
 }
