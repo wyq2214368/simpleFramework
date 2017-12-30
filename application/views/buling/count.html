@@ -3,13 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>buling年度报告</title>
+    <style>
+        p{
+            font-size: 16px;
+            color:#456;
+            margin:0 140px;
+            line-height: 28px;
+        }
+        .tab{
+            padding-left:32px;
+        }
+        .title{
+            padding:20px;
+            text-align: center;
+        }
+        h3{
+            margin:10px 140px;
+        }
+    </style>
 </head>
 <body>
-<center>
+
+    <h1 class="title">buling消息平台2017年度报总结</h1>
+    <article>
+        <h3>前言：</h3>
+        <p><span class="tab"></span>
+                buling.club自2017年7月上线以来，至今已有近半年时间了，在这半年里其功能在不断扩充，代码在不断完善，访问量也在不断增长，即使成绩并不耀眼，
+            却也令人欣喜，尤其是对我个人的提升，确实大有裨益。
+        </p>
+        <p><span class="tab"></span>
+                同时，在平台成长的过程中，越来越多的同学借助buling的服务解决问题，让我倍感欣慰，能够实现设计的初衷，有力地证明了它的价值。
+        </p>
+        <p><span class="tab"></span>
+                对我个人而言，buling带给我的是技术，是经验，是提升，也是我大三的一段美好记忆。它全部的内容其实并不局限于用户直接看到的内容那么简单
+            （所以我从不在乎无知者的鄙夷），而管理后台、机器人、爬虫、数据看板等这些子项目更是鲜为人知，不过依然很高兴得到同学们的认可，
+            尤其是得到曾与我深入讨论过技术部分的几位技术大牛/面试官的肯定（可以说buling在一定程度上对我入职大特保和新浪两家公司都起到了一定推动作用
+            ，当然作用还是十分有限的^_^但依然希望同学们平时能注意创造并保留成果，说不定什么时候就能用上，哪怕只有一点点助力也胜过无）。
+        </p>
+        <p><span class="tab"></span>
+            对同学们而言，buling.club也在一定程度上为众多同学提供了服务，带来了方便。特别是对爱好技术的同学们带来了兴趣和可触及的一种期望。这便是它存在的最大意义。
+        </p>
+    </article>
+    <hr/>
     {%for i in range(1, 4)%}
-    <div id="main{{i}}" style="width:60%;height:400px;margin: 50px;border:1px solid #eee;box-shadow: 5px 5px 5px #ddd;"></div>
+    <center><div id="main{{i}}" style="width:60%;height:400px;margin: 50px;border:1px solid #eee;box-shadow: 5px 5px 5px #ddd;"></div></center>
     {%endfor%}
-</center>
 <script src="/plugs/echart/echarts-all.js"></script>
 <script>
     var myChart = echarts.init(document.getElementById('main1'));

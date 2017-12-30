@@ -100,7 +100,6 @@ class indexController extends BaseController
 	"series": []
 }
 json;
-        echo "<pre>";
         $option = json_decode($json,true);
         $option2 = $option;
         $option3 = $option;
