@@ -23,6 +23,10 @@ class crawlerController extends BaseController
     public function torrent($film)
     {
         $key = $film;
+        if (empty($key))
+        {
+            echo "参数错误，请暂时按规则请求，url最后输入查询资源名，例：http://test.buling.club/crawler/torrent/前任3";
+        }
         $p = 1;
         $domain = "http://www.btyunsou.me";
         $url = $domain . "/search/{$key}_ctime_{$p}.html";
