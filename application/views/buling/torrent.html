@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迅雷磁力链接搜索</title>
+</head>
+<body>
+<!--<div style="font-size:20px;color:red;">磁力链接会用吧？复制磁力链接打开迅雷（一般会自动提示是否下载），新建下载任务，填上磁力链接下载。资源下载慢就换一个。</div>-->
+<ul>
+    {% for item in list %}
+        <li><div>
+            <p>名称：{{item.name}}</p>
+            <p>大小：{{item.size}}</p>
+            <p>活跃度：{{item.rank}}</p>
+            <p style="color:blue;">磁力链接：{{item.link}}</p>
+        </div><hr></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

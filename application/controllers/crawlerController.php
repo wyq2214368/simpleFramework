@@ -19,4 +19,33 @@ class crawlerController extends BaseController
         echo "爬取CSDN(http://mobile.csdn.net/)首页文章链接：<pre>";
         print_r($data);
     }
+    public function torrent($film)
+    {
+        $key = $film;
+        $p = 1;
+        $domain = "http://www.btyunsou.me";
+        $url = $domain . "/search/{$key}_ctime_{$p}.html";
+
+        $rules = array(
+            'list'=>array(".media-list>li",'html')
+        );
+        $datas = QueryList::Query($url,$rules)
+            ->getData(function($list){
+                foreach ($list as $item)
+                {
+                    $rules = array(
+                        'name' => array(".media-body>h4>.title","text"),
+                        'size' => array(".label-warning","text"),
+                        'rank' => array(".label-primary","text"),
+                        'link' => array("a.title","href"),
+                    );
+                    $data = QueryList::Query($item, $rules)->data[0];
+                    $link = $data['link'];
+                    $data['link'] = "magnet:?xt=urn:btih:" . substr($link,1,strpos($link, '.html')-1);
+                }
+                return $data;
+            });
+        $this->assign('list', $datas);
+        $this->display('buling/torrent.html');
+    }
 }
