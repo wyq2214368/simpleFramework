@@ -6,5 +6,6 @@
  * Time: 21:49
  */
 return array(
-    'log_path'=>ROOT_PATH."/"
+    'log_path'=>ROOT_PATH."/log/",
+    'log_path_info'=>ROOT_PATH."/log/info/"
 );

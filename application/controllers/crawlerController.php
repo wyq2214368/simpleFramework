@@ -8,6 +8,7 @@
 
 namespace controllers;
 use core\base\BaseController;
+use core\log;
 use QL\QueryList;
 class crawlerController extends BaseController
 {
@@ -45,6 +46,7 @@ class crawlerController extends BaseController
                 }
                 return $data;
             });
+        log::info($key, 'torrent');
         $this->assign('list', $datas);
         $this->display('buling/torrent.html');
     }
