@@ -40,6 +40,7 @@ class crawlerController extends BaseController
                 {
                     $rules = array(
                         'name' => array(".media-body>h4>.title","text"),
+                        'time' => array(".label-success","text"),
                         'size' => array(".label-warning","text"),
                         'rank' => array(".label-primary","text"),
                         'link' => array("a.title","href"),
