@@ -13,6 +13,8 @@ class loader
         $router = new \core\router();
         $controller =$router->controller;
         $action = $router->action;
+        $controller = 'crawler';
+        $action = 'autopost';
         $param = isset($router->param)?$router->param:null;
         $controllerFile = APP_PATH.'/controllers/'.$controller.'Controller.php';
         $controllerClass = '\controllers\\'.$controller.'Controller';
