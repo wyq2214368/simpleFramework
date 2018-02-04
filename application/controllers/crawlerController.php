@@ -30,7 +30,12 @@ class crawlerController extends BaseController
             $taskList = $db->getTaskList('*');
             foreach ($taskList as $task)
             {
-                $this->getPost($task['url'], $task['term_id'], $task['list_match'], $task['title_match'], $task['content_match'], $task['img_match']);
+                for ($i=2;$i<=$task['img_match'];$i++)
+                {
+                    $arr = explode('.html', $task['url']);
+                    $url = $arr[0]."-$i.html";
+                    $this->getPost($url, $task['term_id'], $task['list_match'], $task['title_match'], $task['content_match'], $task['img_match']);
+                }
             }
         }
         catch (\Exception $e)
