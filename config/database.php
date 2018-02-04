@@ -12,5 +12,5 @@ return array(
     'username' => 'root',
     'password' => 'shujuku',
     'charset' => 'utf8',
-    'driver' => 'medoo' // 提供 modoo 和 pdo 两种驱动
+    'driver' => 'pdo' // 提供 modoo 和 pdo 两种驱动
 );

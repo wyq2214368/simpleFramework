@@ -27,7 +27,9 @@ class BaseModel
                     break;
                 case 'pdo':
                     $dsn="mysql:host={$conf['server']};dbname={$conf['database_name']}";
-                    $this->db = new \PDO($dsn,$conf['username'],$conf['password'],[ 'charset' => 'utf8']);
+                    $pdo = new \PDO($dsn,$conf['username'],$conf['password'],[ 'charset' => 'utf8']);
+                    $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                    $this->db = new \FluentPDO($pdo);
             }
         }catch (\PDOException $e){
             echo $e->getMessage();
