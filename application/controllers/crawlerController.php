@@ -119,7 +119,7 @@ class crawlerController extends BaseController
                         'meta_value' => "thumbnail$id.jpg"
                     );
                     $db->addPostMeta($metaData);
-                    $this->saveImg($match[1][0], dirname(ROOT_PATH)."\\baodingiot\\wp-content\\themes\\yusi1.0\\img\\pic\\thumbnail$id.jpg");
+                    @$this->saveImg($match[1][0], dirname(ROOT_PATH)."\\baodingiot\\wp-content\\themes\\yusi1.0\\img\\pic\\thumbnail$id.jpg");
                 }
             }
         }
