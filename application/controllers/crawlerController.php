@@ -51,11 +51,7 @@ class crawlerController extends BaseController
             log::error($e->getMessage());
         }
     }
-    protected function saveImg($file_url, $save_to)
-    {
-        $content = file_get_contents($file_url);
-        file_put_contents($save_to, $content);
-    }
+
     protected function getPost($url, $term_id, $list_match, $title_match, $content_match, $img_match)
     {
         ini_set('memory_limit','512M');    // 临时设置最大内存占用为3G
@@ -126,10 +122,33 @@ class crawlerController extends BaseController
                         'meta_value' => "thumbnail$id.jpg"
                     );
                     $db->addPostMeta($metaData);
-                    $this->saveImg($match[1][0], dirname(ROOT_PATH)."\\baodingiot\\wp-content\\themes\\yusi1.0\\img\\pic\\thumbnail$id.jpg");
+                    @$this->saveImg($match[1][0], dirname(ROOT_PATH)."\\baodingiot\\wp-content\\themes\\yusi1.0\\img\\pic\\thumbnail$id.jpg");
                 }
             }
         }
     }
-
+    protected function saveImg($file_url, $save_to)
+    {
+        $ch = $this->init($file_url);
+        $img = curl_exec ($ch);
+        curl_close ($ch);
+        $fp = fopen($save_to,'w');
+        fwrite($fp, $img);
+        fclose($fp);
+    }
+    protected function init($url){
+        $ch=curl_init();
+        $opt=array();
+        $opt[CURLOPT_URL]=$url;
+        $opt[CURLOPT_HEADER]=false;
+        $opt[CURLOPT_CONNECTTIMEOUT]=15;
+        $opt[CURLOPT_TIMEOUT]=300;
+        $opt[CURLOPT_AUTOREFERER]=true;
+        $opt[CURLOPT_USERAGENT]='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.47 Safari/536.11';
+        $opt[CURLOPT_RETURNTRANSFER]=true;
+        $opt[CURLOPT_FOLLOWLOCATION]=true;
+        $opt[CURLOPT_MAXREDIRS]=10;
+        curl_setopt_array($ch,$opt);
+        return $ch;
+    }
 }
