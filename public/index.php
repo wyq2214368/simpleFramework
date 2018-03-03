@@ -8,7 +8,7 @@ define('ROOT_PATH',dirname(__DIR__));
 define('APP_PATH',ROOT_PATH.'/application');
 define('CORE_PATH',ROOT_PATH.'/core');
 define('VIEW_PATH',APP_PATH.'/views');
-define('DEBUG',true);
+define('DEBUG',false);
 
 include "../vendor/autoload.php";
 include CORE_PATH.'/loader.php';

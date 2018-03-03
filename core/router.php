@@ -11,7 +11,7 @@ class router
     public function __construct()
     {
         if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/' && strpos($_SERVER['REQUEST_URI'],'/?')!==0 ){
-            $path = $_SERVER['REQUEST_URI'];
+            $path = $_SERVER['PATH_INFO'];
             $pathArr = explode('/',trim($path));
             if (isset($pathArr[1])){
                 $this->controller = $pathArr[1];
