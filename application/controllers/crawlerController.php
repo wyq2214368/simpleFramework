@@ -50,7 +50,7 @@ class crawlerController extends BaseController
                 }
                 return $data;
             });
-        log::info($key, 'torrent');
+        log::info(urldecode($key), 'torrent');
         $this->assign('list', $datas);
         $this->display('buling/torrent.html');
     }
